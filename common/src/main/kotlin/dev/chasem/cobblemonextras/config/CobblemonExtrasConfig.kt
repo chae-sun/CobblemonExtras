@@ -7,7 +7,6 @@ import com.google.gson.annotations.SerializedName
 class CobblemonExtrasConfig {
     @SerializedName("permissionlevels")
     var permissionLevels: PermissionLevels = PermissionLevels()
-    var showcase: ShowcaseConfig = ShowcaseConfig()
     @SerializedName("customModels")
     var customModels: CustomModelsConfig = CustomModelsConfig()
 
@@ -74,14 +73,6 @@ class CobblemonExtrasConfig {
         var COMMAND_BATTLESPECTATE_PERMISSION: Int = 2
     }
 
-    inner class ShowcaseConfig {
-        var isShowcaseEnabled: Boolean = true
-        var apiSecret: String = "To start using showcase, please goto https://cobblemonextras.com/showcase"
-
-        var syncIntervalMinutes: Int = 5
-        var debug: Boolean = false
-        var async: Boolean = true
-    }
 
     inner class CustomModelsConfig {
         var SHINY_TOKEN = 100;
