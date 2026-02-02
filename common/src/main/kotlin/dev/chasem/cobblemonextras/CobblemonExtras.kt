@@ -26,7 +26,6 @@ object CobblemonExtras {
     const val MODID = "cobblemonextras"
     lateinit var config: CobblemonExtrasConfig
     var LOGGER: Logger = LogManager.getLogger("[CobblemonExtras]")
-    lateinit var showcaseService: ShowcaseService
     val eventHandler = CobblemonExtrasEventHandler()
 
     fun initialize() {
@@ -42,14 +41,8 @@ object CobblemonExtras {
 
 
         this.permissions = CobblemonExtrasPermissions()
-        this.showcaseService = ShowcaseService
         PokeTokensInteractionHandler()
         CobblemonEvents.POKEMON_CAPTURED.subscribe { event -> eventHandler.onPokemonCapture(event) }
-    }
-
-    fun onShutdown() {
-        System.out.println("CobblemonExtras - Shutting Down")
-        showcaseService.stop();
     }
 
     public fun getLogger(): Logger {
