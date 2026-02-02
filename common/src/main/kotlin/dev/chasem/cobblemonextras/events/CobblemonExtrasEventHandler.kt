@@ -5,8 +5,6 @@ import com.cobblemon.mod.common.api.events.pokemon.PokemonCapturedEvent
 import com.cobblemon.mod.common.entity.pokeball.EmptyPokeBallEntity
 import com.cobblemon.mod.common.util.math.geometry.toRadians
 import dev.chasem.cobblemonextras.CobblemonExtras
-import dev.chasem.cobblemonextras.CobblemonExtras.getLogger
-import dev.chasem.cobblemonextras.CobblemonExtras.showcaseService
 import net.minecraft.core.component.DataComponents
 import net.minecraft.nbt.CompoundTag
 import net.minecraft.server.level.ServerPlayer
@@ -14,34 +12,9 @@ import net.minecraft.world.InteractionHand
 import net.minecraft.world.InteractionResultHolder
 import net.minecraft.world.item.ItemStack
 import net.minecraft.world.level.Level
-import java.util.concurrent.CompletableFuture
-import java.util.concurrent.TimeUnit
 import kotlin.math.cos
 
 class CobblemonExtrasEventHandler {
-    fun onPlayerLogin(player: ServerPlayer) {
-        if (CobblemonExtras.config.showcase.debug) {
-            getLogger().info(player.name.string + " has logged in! Waiting 10 seconds...")
-        }
-        if (CobblemonExtras.config.showcase.isShowcaseEnabled) {
-            val delayed = CompletableFuture.delayedExecutor(10L, TimeUnit.SECONDS)
-            val future = CompletableFuture<String>()
-            future.completeAsync({
-                if (CobblemonExtras.config.showcase.debug) {
-                    getLogger().info("Syncing " + player.name.string + " to showcase...")
-                }
-                showcaseService.syncPlayers(listOf(player))
-                "done"
-            }, delayed)
-        }
-    }
-
-    fun onPlayerLogout(player: ServerPlayer) {
-        if (CobblemonExtras.config.showcase.isShowcaseEnabled) {
-            showcaseService.syncPlayers(listOf(player))
-        }
-    }
-
 
     fun onPokemonCapture(event: PokemonCapturedEvent) {
         val pokemon = event.pokemon
