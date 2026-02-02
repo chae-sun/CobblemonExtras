@@ -151,13 +151,8 @@ object CobblemonExtras {
         PokeBattle().register(dispatcher)
         CompDelete().register(dispatcher)
         PokeIVs().register(dispatcher)
-
         PokeShoutAll().register(dispatcher)
         EmptyBox().register(dispatcher)
-
-        if (config.showcase.isShowcaseEnabled) {
-            Showcase().register(dispatcher)
-        }
         ItemShout().register(dispatcher)
         PokeOdds().register(dispatcher)
         PokeKill().register(dispatcher)
@@ -165,7 +160,6 @@ object CobblemonExtras {
         GivePokeToken().register(dispatcher)
         BattleSpectate().register(dispatcher)
         GiveShinyBall().register(dispatcher)
-        PlayerGames().register(dispatcher)
     }
 
 }
