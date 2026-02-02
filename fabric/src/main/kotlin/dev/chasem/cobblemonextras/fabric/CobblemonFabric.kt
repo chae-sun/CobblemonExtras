@@ -4,24 +4,20 @@ import dev.chasem.cobblemonextras.CobblemonExtras
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents
-import net.fabricmc.fabric.api.event.player.UseItemCallback
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.minecraft.server.level.ServerPlayer
 
 class CobblemonFabric : ModInitializer {
+
     override fun onInitialize() {
-        CobblemonExtras.getLogger().info("Fabric Mod init")
-        CobblemonExtras.initialize();
+        CobblemonExtras.initialize()
+
         CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
             CobblemonExtras.registerCommands(dispatcher)
         }
-        ServerLifecycleEvents.SERVER_STOPPING.register { CobblemonExtras.onShutdown() }
-        ServerLifecycleEvents.SERVER_STOPPED.register { CobblemonExtras.onShutdown() }
-        ServerPlayConnectionEvents.JOIN.register { serverPlayNetworkHandler, _, _ ->
-            CobblemonExtras.eventHandler.onPlayerLogin(serverPlayNetworkHandler.getPlayer())
-        }
-        UseItemCallback.EVENT.register { player, world, hand ->
-            CobblemonExtras.eventHandler.onUseItem(player as ServerPlayer, world, hand)
+
+        ServerLifecycleEvents.SERVER_STARTING.register {
+            CobblemonExtras.permissions.register()
         }
     }
 }
