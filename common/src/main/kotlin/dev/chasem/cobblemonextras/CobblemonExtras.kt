@@ -12,7 +12,6 @@ import dev.chasem.cobblemonextras.config.CobblemonExtrasConfig
 import dev.chasem.cobblemonextras.events.CobblemonExtrasEventHandler
 import dev.chasem.cobblemonextras.events.PokeTokensInteractionHandler
 import dev.chasem.cobblemonextras.permissions.CobblemonExtrasPermissions
-import dev.chasem.cobblemonextras.services.ShowcaseService
 import net.minecraft.commands.CommandSourceStack
 import net.minecraft.world.entity.EntityEvent
 import org.apache.logging.log4j.LogManager
